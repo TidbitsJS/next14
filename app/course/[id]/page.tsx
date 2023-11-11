@@ -15,18 +15,6 @@ export default async function Home({ params }: any) {
           {courseInfo.title}
         </h1>
 
-        <div>
-          <pre>{JSON.stringify(courseInfo, null, 2)}</pre>
-        </div>
-
-        <hr />
-
-        <div>
-          <pre>{JSON.stringify(courseCurriculum, null, 2)}</pre>
-        </div>
-
-        <hr />
-
         <ul>
           {courseCurriculum.map((module: any) => (
             <div key={module.slug} className='my-4 space-y-1 first:mt-4'>
@@ -45,6 +33,18 @@ export default async function Home({ params }: any) {
             </div>
           ))}
         </ul>
+
+        <hr />
+
+        <div>
+          <pre>{JSON.stringify(courseInfo, null, 2)}</pre>
+        </div>
+
+        <hr />
+
+        <div>
+          <pre>{JSON.stringify(courseCurriculum, null, 2)}</pre>
+        </div>
       </section>
     </main>
   );

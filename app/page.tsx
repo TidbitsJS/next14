@@ -9,9 +9,7 @@ export default async function Home() {
       <section className='space-y-7'>
         <h1 className='text-violet-700 text-5xl font-bold'>All Courses</h1>
 
-        <div className='space-x-5'>
-          <pre>{JSON.stringify(allCourses, null, 2)}</pre>
-
+        <div className='space-y-5'>
           <div className='text-blue-600 flex flex-col'>
             {allCourses.map((course: any) => (
               <Link
@@ -22,6 +20,10 @@ export default async function Home() {
               </Link>
             ))}
           </div>
+
+          <hr />
+
+          <pre>{JSON.stringify(allCourses, null, 2)}</pre>
         </div>
       </section>
     </main>
