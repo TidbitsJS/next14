@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { getLectureContent } from "punn";
 
+export const revalidate = 0; // revalidate at most every hour
+
 export default async function Lecture({ params }: any) {
   const id = params.id;
   const moduleId = params.moduleId;

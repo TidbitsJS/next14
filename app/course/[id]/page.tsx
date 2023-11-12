@@ -3,6 +3,8 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getSingleCourse, generateCurriculumStructure } from "punn";
 
+export const revalidate = 0; // revalidate at most every hour
+
 async function Page({ params }: any) {
   const id = params.id;
   if (!id) return <p>Loading...</p>;
