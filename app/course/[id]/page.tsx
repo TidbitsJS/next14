@@ -10,9 +10,9 @@ async function Page({ params }: any) {
   if (!id) return <p>Loading...</p>;
 
   const courseInfo = await getSingleCourse(id);
-  const courseCurriculum = await generateCurriculumStructure(
-    courseInfo.packageName
-  );
+  // const courseCurriculum = await generateCurriculumStructure(
+  //   courseInfo.packageName
+  // );
 
   return (
     <main className='flex min-h-screen flex-col p-24 max-w-5xl mx-auto space-y-16'>
@@ -22,7 +22,7 @@ async function Page({ params }: any) {
             {courseInfo.title}
           </h1>
 
-          <ul>
+          {/* <ul>
             {courseCurriculum.map((module: any) => (
               <div key={module.slug} className='my-4 space-y-1 first:mt-4'>
                 <li>{module.meta.title}:</li>
@@ -39,7 +39,7 @@ async function Page({ params }: any) {
                 </div>
               </div>
             ))}
-          </ul>
+          </ul> */}
 
           <hr />
 
@@ -49,9 +49,9 @@ async function Page({ params }: any) {
 
           <hr />
 
-          <div>
+          {/* <div>
             <pre>{JSON.stringify(courseCurriculum, null, 2)}</pre>
-          </div>
+          </div> */}
         </section>
       </Suspense>
     </main>
