@@ -9,18 +9,16 @@ async function Page({ params }: any) {
   const id = params.id;
   if (!id) return <p>Loading...</p>;
 
-  const courseInfo = await getSingleCourse(id);
-  // const courseCurriculum = await generateCurriculumStructure(
-  //   courseInfo.packageName
-  // );
+  // const courseInfo = await getSingleCourse(id);
+  const courseCurriculum = await generateCurriculumStructure(id);
 
   return (
     <main className='flex min-h-screen flex-col p-24 max-w-5xl mx-auto space-y-16'>
       <Suspense fallback={<p className='text-white'>Loading...</p>}>
         <section className='space-y-7'>
-          <h1 className='text-violet-700 text-5xl font-bold'>
+          {/* <h1 className='text-violet-700 text-5xl font-bold'>
             {courseInfo.title}
-          </h1>
+          </h1> */}
 
           {/* <ul>
             {courseCurriculum.map((module: any) => (
@@ -43,15 +41,15 @@ async function Page({ params }: any) {
 
           <hr />
 
-          <div>
+          {/* <div>
             <pre>{JSON.stringify(courseInfo, null, 2)}</pre>
-          </div>
+          </div> */}
 
           <hr />
 
-          {/* <div>
+          <div>
             <pre>{JSON.stringify(courseCurriculum, null, 2)}</pre>
-          </div> */}
+          </div>
         </section>
       </Suspense>
     </main>
