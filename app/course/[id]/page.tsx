@@ -1,11 +1,11 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getSingleCourse, generateCurriculumStructure } from "punn";
-import { Suspense } from "react";
 
-export default async function Course({ params }: any) {
+async function Page({ params }: any) {
   const id = params.id;
-  if (!id) redirect("/not-found");
+  if (!id) return <p>Loading...</p>;
 
   const courseInfo = await getSingleCourse(id);
   const courseCurriculum = await generateCurriculumStructure(
@@ -55,3 +55,5 @@ export default async function Course({ params }: any) {
     </main>
   );
 }
+
+export default Page;
