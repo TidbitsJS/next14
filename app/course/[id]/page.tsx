@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSingleCourse, generateCurriculumStructure } from "punn";
+import { Suspense } from "react";
 
 export default async function Course({ params }: any) {
   const id = params.id;
@@ -13,42 +14,44 @@ export default async function Course({ params }: any) {
 
   return (
     <main className='flex min-h-screen flex-col p-24 max-w-5xl mx-auto space-y-16'>
-      <section className='space-y-7'>
-        <h1 className='text-violet-700 text-5xl font-bold'>
-          {courseInfo.title}
-        </h1>
+      <Suspense fallback={<p className='text-white'>Loading...</p>}>
+        <section className='space-y-7'>
+          <h1 className='text-violet-700 text-5xl font-bold'>
+            {courseInfo.title}
+          </h1>
 
-        <ul>
-          {courseCurriculum.map((module: any) => (
-            <div key={module.slug} className='my-4 space-y-1 first:mt-4'>
-              <li>{module.meta.title}:</li>
+          <ul>
+            {courseCurriculum.map((module: any) => (
+              <div key={module.slug} className='my-4 space-y-1 first:mt-4'>
+                <li>{module.meta.title}:</li>
 
-              <div className='flex flex-col text-blue-600 ml-2'>
-                {module.lectures.map((lecture: any) => (
-                  <Link
-                    href={`/course/${courseInfo.packageName}/learn/${module.slug}/${lecture.slug}`}
-                    key={lecture.slug}
-                  >
-                    {lecture.meta.title}
-                  </Link>
-                ))}
+                <div className='flex flex-col text-blue-600 ml-2'>
+                  {module.lectures.map((lecture: any) => (
+                    <Link
+                      href={`/course/${courseInfo.packageName}/learn/${module.slug}/${lecture.slug}`}
+                      key={lecture.slug}
+                    >
+                      {lecture.meta.title}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </ul>
+            ))}
+          </ul>
 
-        <hr />
+          <hr />
 
-        <div>
-          <pre>{JSON.stringify(courseInfo, null, 2)}</pre>
-        </div>
+          <div>
+            <pre>{JSON.stringify(courseInfo, null, 2)}</pre>
+          </div>
 
-        <hr />
+          <hr />
 
-        <div>
-          <pre>{JSON.stringify(courseCurriculum, null, 2)}</pre>
-        </div>
-      </section>
+          <div>
+            <pre>{JSON.stringify(courseCurriculum, null, 2)}</pre>
+          </div>
+        </section>
+      </Suspense>
     </main>
   );
 }
