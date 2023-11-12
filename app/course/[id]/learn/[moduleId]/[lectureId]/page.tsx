@@ -1,9 +1,12 @@
+import { redirect } from "next/navigation";
 import { getLectureContent } from "punn";
 
-export default async function Home({ params }: any) {
+export default async function Lecture({ params }: any) {
   const id = params.id;
   const moduleId = params.moduleId;
   const lectureId = params.lectureId;
+
+  if (!id || !moduleId || !lectureId) redirect("/not-found");
 
   const lectureInfo = await getLectureContent(id, moduleId, lectureId);
 

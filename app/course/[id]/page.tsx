@@ -1,8 +1,11 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { getSingleCourse, generateCurriculumStructure } from "punn";
 
-export default async function Home({ params }: any) {
+export default async function Course({ params }: any) {
   const id = params.id;
+  if (!id) redirect("/not-found");
+
   const courseInfo = await getSingleCourse(id);
   const courseCurriculum = await generateCurriculumStructure(
     courseInfo.packageName
